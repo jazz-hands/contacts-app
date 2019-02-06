@@ -1,0 +1,40 @@
+.NavBar {
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  width: inherit;
+}
+
+.NavBar-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 10vmin;
+}
+
+.NavBar-header {
+  background-color: #282c34;
+  min-height: 10vh;
+  max-height: 20vh;
+}
+
+.NavBar-link {
+  color: #61dafb;
+}
+
+.NavBar-title {
+  font-size: calc(10px + 4vmin);
+  color: white;
+  width: inherit;
+}
+
+.NavBar-menu {
+  float: right;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
