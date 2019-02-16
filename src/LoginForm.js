@@ -12,49 +12,49 @@ class LoginForm extends React.Component {
   render() {
 
   return (
-    <div className='LoginForm'>
-      <form>
-      <Paper className='LoginForm'>
-      <Typography variant="h6">
-        Login to Contacts Application
-      </Typography>
-        <FormControl margin="normal" required fullWidth>
-          <InputLabel
-            htmlFor="loginFormUsernameInput"
-          >
-            Username
-          </InputLabel>
-          <Input
-            id="loginFormUsernameInput"
-          />
+    <div>
+      <form className='LoginForm'>
+        <Paper className='LoginForm'>
+          <Typography variant="h6">
+            Login to Contacts Application
+          </Typography>
+          <FormControl margin="normal" required fullWidth>
+            <InputLabel
+              htmlFor="loginFormUsernameInput"
+            >
+              Username
+            </InputLabel>
+            <Input
+              id="loginFormUsernameInput"
+            />
           </FormControl>
           <FormControl margin="normal"required fullWidth>
-          <InputLabel
-            htmlFor="loginFormPasswordInput"
-          >
-            Password
-          </InputLabel>
-          <Input
-            id="loginFormPasswordInput"
-          />
-        </FormControl>
-        <FormControl margin="normal" fullWidth>
-        <Button
-            type="submit"
-            variant="contained"
-            color="primary"
-            fullWidth={false}
-            className="LoginForm-SubmitButton"
-          >
-            Sign in
-        </Button>
-      </FormControl>
-      <FormControl margin="normal" fullWidth>
-        <Link className="LoginForm-forgotPasswordLink">
-          Forgot Password
-        </Link>
-      </FormControl>
-      </Paper>
+            <InputLabel
+              htmlFor="loginFormPasswordInput"
+            >
+              Password
+            </InputLabel>
+            <Input
+              id="loginFormPasswordInput"
+            />
+          </FormControl>
+          <FormControl margin="normal" fullWidth>
+            <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                fullWidth={false}
+                className="LoginForm-SubmitButton"
+              >
+                Sign in
+            </Button>
+          </FormControl>
+          <FormControl margin="normal" fullWidth>
+            <Link className="LoginForm-forgotPasswordLink">
+              Forgot Password
+            </Link>
+          </FormControl>
+        </Paper>
       </form>
     </div>
     );
