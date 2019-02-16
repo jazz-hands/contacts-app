@@ -1,0 +1,14 @@
+.LoginForm {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 2em;
+  margin: 0em;
+}
+
+.LoginForm-forgotPasswordLink {
+  align-self: center;
+}
+
+.LoginForm-SubmitButton {
+  width: 100%;
+}
