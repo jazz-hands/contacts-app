@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import LoginForm from './LoginForm';
 import App from './App';
 import ContactForm from './ContactForm';
+import SearchIndex from './SearchIndex';
 
 class Routing extends Component {
   render() {
@@ -11,11 +12,9 @@ class Routing extends Component {
       <Router>
         <div>
           <Route exact path="/" component={App} />
+          <Route exact path="/index" component={SearchIndex} />
           <Route path="/login" component={LoginForm} />
           <Route path="/register" component={ContactForm} />
-          // <Route path="/account" component={LoginForm} />
-          // <Route path="/profile/{id}" component={LoginForm} />
-          // <Route path="/search" component={LoginForm} />
         </div>
       </Router>
       </div>
@@ -24,3 +23,7 @@ class Routing extends Component {
 }
 
 export default Routing;
+
+// <Route path="/account" component={LoginForm} />
+// <Route path="/profile/{id}" component={LoginForm} />
+// <Route path="/search" component={LoginForm} />

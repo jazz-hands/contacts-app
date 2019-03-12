@@ -1,0 +1,20 @@
+.searchField-container {
+  margin: 2em;
+  padding: 1em;
+  display: flex;
+}
+
+.searchField-input {
+  display: inline-flex;
+  margin: auto;
+  width: 100%;
+}
+
+.searchField-button {
+  display: inline-flex;
+  margin-left: 1em;
+}
+
+.searchBox-container {
+  margin: auto;
+}

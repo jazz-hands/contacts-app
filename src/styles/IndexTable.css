@@ -1,0 +1,12 @@
+.indexTable-container {
+  height: 400px;
+  overflow: auto;
+  margin: auto;
+  width: 95%;
+}
+
+.indexTableResults-container {
+  height: 400px;
+  overflow: auto;
+  margin: auto;
+}
