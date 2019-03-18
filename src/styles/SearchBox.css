@@ -1,20 +1,30 @@
 .searchField-container {
-  margin: 2em;
+  margin: 2em auto 1em auto;
   padding: 1em;
   display: flex;
 }
 
 .searchField-input {
-  display: inline-flex;
+  display: flex;
+  flex-flow: row;
+  margin: auto;
+  width: 100%;
+}
+
+.searchField-input {
+  display: flex;
+  flex-flow: row;
   margin: auto;
   width: 100%;
 }
 
 .searchField-button {
+  flex-flow: row;
   display: inline-flex;
   margin-left: 1em;
 }
 
 .searchBox-container {
   margin: auto;
+  width: 98vw;
 }

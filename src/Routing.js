@@ -4,11 +4,12 @@ import LoginForm from './LoginForm';
 import App from './App';
 import ContactForm from './ContactForm';
 import SearchIndex from './SearchIndex';
+import './styles/Main.css';
 
 class Routing extends Component {
   render() {
     return (
-      <div>
+      <div className='index-container'>
       <Router>
         <div>
           <Route exact path="/" component={App} />

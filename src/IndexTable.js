@@ -50,19 +50,19 @@ class IndexTable extends React.Component {
     return (
       <div >
         <Paper className='indexTable-container'>
-          <Table>
+          <Table className='indexTableHeader'>
             <TableHead>
               <TableRow>
                 <TableCell>Dessert (100g serving)</TableCell>
-                <TableCell align="right">Calories</TableCell>
-                <TableCell align="right">Fat (g)</TableCell>
-                <TableCell align="right">Carbs (g)</TableCell>
-                <TableCell align="right">Protein (g)</TableCell>
+                <TableCell align="right" className='resultDetails-cell'>Calories</TableCell>
+                <TableCell align="right" className='resultDetails-cell'>Fat (g)</TableCell>
+                <TableCell align="right" className='resultDetails-cell'>Carbs (g)</TableCell>
+                <TableCell align="right" className='resultDetails-cell'>Protein (g)</TableCell>
               </TableRow>
             </TableHead>
           </Table>
           <div className='indexTableResults-container'>
-          <Table>
+          <Table className='indexTableResults'>
           <TableHead></TableHead>
             <TableBody>
               {rows.map(row => (

@@ -8,23 +8,48 @@ class SearchBox extends React.Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      searchText: "",
+      filters: {}
+    };
+    this.handleChange = this.handleChange.bind(this);
   };
 
-  render() {
+  handleChange(event): void {
+      event.persist();
+      this.setState({
+        searchText: event.target.value
+      });
+      this.props.searchFor(event.target.value, this.state.filters);
+  }
 
+  setFilters(event){
+    let name = event.target.name;
+    event.persist();
+    this.setState({
+      ...this.state,
+      filters: {
+        name: event.target.value
+      }
+    });
+  }
+
+
+
+  render() {
     return (
-      <div className="searchBox-container">
+      <div >
         <Paper className='searchField-container'>
-          <span className='searchField-input'>
             <TextField
+            ref="searchText"
             id="outlined-uncontrolled"
             label="Search"
             variant="outlined"
-            fullWidth
+            className='searchField-input'
+            onChange={this.handleChange}
           />
-          </span>
           <span className="searchField-button">
-            <Button variant="contained" color="primary">
+            <Button variant="contained" color="primary" onClick = {() => this.props.searchFor(this.state.searchText, this.state.filters)}>
               Submit
             </Button>
           </span>

@@ -1,12 +1,30 @@
 .indexTable-container {
-  height: 400px;
-  overflow: auto;
   margin: auto;
-  width: 95%;
+  height: 75vh;
+  width: 100%;
+  display: table;
 }
 
 .indexTableResults-container {
-  height: 400px;
-  overflow: auto;
+  height: 89%;
   margin: auto;
+  overflow: auto;
+}
+
+.indexTableResults {
+  width: inherit;
+  display: table;
+}
+
+.indexTableHeader {
+  height: 10%;
+  width: inherit;
+  display: table;
+}
+
+@media screen and (max-width: 550px) {
+  /* For mobile phones: */
+  .resultDetails-cell {
+    display: none;
+  }
 }
