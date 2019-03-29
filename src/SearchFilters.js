@@ -33,16 +33,18 @@ class SearchFilter extends React.Component {
       filters: {
         0: {
           index: '',
-          name: ''
+          name: '',
+          value: ''
         }
       }
     };
     this.handleChange = this.handleChange.bind(this);
     this.setFilters = this.setFilters.bind(this);
-    this.currentFilter = this.currentFilter.bind(this);
+    this.setFilterSearchText = this.setFilterSearchText.bind(this);
   };
 
   handleChange(event): void {
+    debugger;
       event.persist();
       this.setState({
         searchText: event.target.value
@@ -76,6 +78,7 @@ class SearchFilter extends React.Component {
           filters: {
             ...this.state.filters,
             [index]: {
+              ...this.state.filters[index],
               name: event.target.value,
               index: event.target.name
             }
@@ -95,6 +98,7 @@ class SearchFilter extends React.Component {
         filters: {
           ...this.state.filters,
           [index]: {
+            ...this.state.filters[index],
             name: event.target.value,
             index: event.target.name
           }
@@ -104,14 +108,19 @@ class SearchFilter extends React.Component {
 
   }
 
-  currentFilter(index, value){
-    var filters = this.state.filters;
-    if(filters[index]){
-      return filters[index]['value']
-    }
-    else {
-      return false
-    }
+  setFilterSearchText(event): void {
+    event.persist();
+    var index = event.target.name;
+    this.setState({
+      ...this.state,
+      filters: {
+        ...this.state.filters,
+        [index]: {
+          ...this.state.filters[index],
+          value: event.target.value
+        }
+      }
+    })
   }
 
   render() {
@@ -149,7 +158,8 @@ class SearchFilter extends React.Component {
                 label=""
                 variant="outlined"
                 className='searchField-input'
-                onChange={this.handleChange}
+                onChange={this.setFilterSearchText}
+                name={filter}
               />
             </div>
           )
