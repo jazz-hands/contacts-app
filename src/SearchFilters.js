@@ -39,6 +39,7 @@ class SearchFilter extends React.Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.setFilters = this.setFilters.bind(this);
+    this.currentFilter = this.currentFilter.bind(this);
   };
 
   handleChange(event): void {
@@ -103,13 +104,23 @@ class SearchFilter extends React.Component {
 
   }
 
+  currentFilter(index, value){
+    var filters = this.state.filters;
+    if(filters[index]){
+      return filters[index]['value']
+    }
+    else {
+      return false
+    }
+  }
+
   render() {
     var options = this.state.options;
     var filters = this.state.filters;
     return (
       <div>
       {
-        Object.keys(filters).map((filter, index) => {
+        Object.keys(filters).map((filter, fIndex) => {
           return(
             <div>
               <Select
@@ -119,17 +130,14 @@ class SearchFilter extends React.Component {
                     autoWidth='true'
                     name={filter}
                     id="outlined-age-simple"
-                    value={filters[index]['value']}
+                    value={filters[fIndex]['value']}
                   />}
               >
               {
                 Object.keys(options).map((filter, index) => {
-                  if(options[filter].isSelected){
-                    console.log("true");
-                    return null;
-                  } else {
+                  if(!options[filter].isSelected || filter == filters[fIndex]['value']){
                     return(
-                        <MenuItem key={"filter"+index} value={filter}>{options[filter]['name']}</MenuItem>
+                      <MenuItem key={"filter"+index} value={filter}>{options[filter]['name']}</MenuItem>
                     )
                   }
                 })
