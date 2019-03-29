@@ -19,20 +19,20 @@ class SearchFilter extends React.Component {
       options: {
         firstName: {
           isSelected: false,
-          name: 'First Name'
+          label: 'First Name'
         },
         lastName: {
           isSelected: false,
-          name: 'Last Name'
+          label: 'Last Name'
         },
         school: {
           isSelected: false,
-          name: 'School'
+          label: 'School'
         }
       },
       filters: {
         0: {
-          value: '',
+          index: '',
           name: ''
         }
       }
@@ -51,14 +51,14 @@ class SearchFilter extends React.Component {
   }
 
   setFilters(event): void {
-    var value = event.target.value;
-    var name = event.target.name;
-    var oldOption = this.state.filters[name].value;
+    var name = event.target.value;
+    var index = event.target.name;
+    var oldOption = this.state.filters[index].name;
     var next = Object.keys(this.state.filters).length
     event.persist();
 
     //unselect filter if another has already been chosen
-    if(this.state.filters[name].name != ""){
+    if(this.state.filters[index].index != ""){
       if(this.state.options[oldOption].isSelected){
         this.setState({
           ...this.state,
@@ -68,16 +68,16 @@ class SearchFilter extends React.Component {
               ...this.state.options[oldOption],
               isSelected: false
             },
-            [value]: {
-              ...this.state.options[value],
+            [name]: {
+              ...this.state.options[name],
               isSelected: true
             }
           },
           filters: {
             ...this.state.filters,
-            [name]: {
-              value: event.target.value,
-              name: event.target.name
+            [index]: {
+              name: event.target.value,
+              index: event.target.name
             }
           }
         });
@@ -87,16 +87,16 @@ class SearchFilter extends React.Component {
         ...this.state,
         options: {
           ...this.state.options,
-          [value]: {
-            ...this.state.options[value],
+          [name]: {
+            ...this.state.options[name],
             isSelected: true
           }
         },
         filters: {
           ...this.state.filters,
-          [name]: {
-            value: event.target.value,
-            name: event.target.name
+          [index]: {
+            name: event.target.value,
+            index: event.target.name
           }
         }
       });
@@ -120,7 +120,7 @@ class SearchFilter extends React.Component {
     return (
       <div>
       {
-        Object.keys(filters).map((filter, fIndex) => {
+        Object.keys(filters).map((filter, index) => {
           return(
             <div>
               <Select
@@ -130,14 +130,14 @@ class SearchFilter extends React.Component {
                     autoWidth='true'
                     name={filter}
                     id="outlined-age-simple"
-                    value={filters[fIndex]['value']}
+                    value={filters[index]['name']}
                   />}
               >
               {
-                Object.keys(options).map((filter, index) => {
-                  if(!options[filter].isSelected || filter == filters[fIndex]['value']){
+                Object.keys(options).map(option => {
+                  if(!options[option].isSelected || option == filters[index]['name']){
                     return(
-                      <MenuItem key={"filter"+index} value={filter}>{options[filter]['name']}</MenuItem>
+                      <MenuItem key={"filter"+index} value={option}>{options[option]['label']}</MenuItem>
                     )
                   }
                 })
