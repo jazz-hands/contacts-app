@@ -3,6 +3,7 @@ import Paper from '@material-ui/core/Paper';
 import './styles/SearchIndex.css';
 import IndexTable from './IndexTable';
 import SearchBox from './SearchBox';
+import SearchFilters from './SearchFilters';
 import NavBar from './NavBar';
 
 class SearchIndex extends React.Component {
@@ -27,6 +28,7 @@ class SearchIndex extends React.Component {
         </div>
         <div className='index-content'>
           <SearchBox searchFor={this.searchFor}/>
+          <SearchFilters />
           <IndexTable searchResults=""/>
         </div>
       </div>
