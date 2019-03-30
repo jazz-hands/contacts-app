@@ -24,7 +24,6 @@ class SearchBox extends React.Component {
   }
 
   setFilters(event){
-    let name = event.target.name;
     event.persist();
     this.setState({
       ...this.state,

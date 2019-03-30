@@ -1,0 +1,28 @@
+.searchFilters {
+  display: flex;
+  flex-flow: row;
+  width: 100%;
+  margin: auto;
+}
+
+.searchFilter {
+  margin: 1em 0em 1em 1em;
+}
+
+.searchFilter-input {
+  margin: 1em;
+  width: 90%;
+}
+
+.filterButton {
+  display: flex;
+  height: 50%;
+  margin: auto 1em auto 0em;
+}
+
+.filterAddRemove {
+  display: flex;
+  height: 50%;
+  margin: auto 1em auto 0em;
+  color: red;
+}

@@ -40,6 +40,8 @@ class SearchFilter extends React.Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.setFilters = this.setFilters.bind(this);
+    this.addFilter = this.addFilter.bind(this);
+    this.removeFilter = this.removeFilter.bind(this);
     this.setFilterSearchText = this.setFilterSearchText.bind(this);
   };
 
@@ -123,47 +125,157 @@ class SearchFilter extends React.Component {
     })
   }
 
+  addFilter(event): void {
+    var newFilters = {};
+    var targetHit = false;
+    if(Object.keys(this.state.filters).length >= Object.keys(this.state.options).length){
+      console.log("no more options");
+      //pass error to user
+    } else {
+      Object.keys(this.state.filters).map((filter, index) => {
+        if(targetHit){
+          newFilters[index+1] = this.state.filters[index];
+        } else {
+          if(index.toString() == event.currentTarget.name){
+            targetHit=true;
+            newFilters[index] = this.state.filters[index];
+            newFilters[index+1] = {
+              index: '',
+              name: '',
+              value: ''
+            }
+          } else {
+            newFilters[index] = this.state.filters[index];
+          }
+        }
+        return(console.log("mapped"));
+      });
+
+      this.setState({
+        ...this.state,
+        filters: newFilters
+      });
+    }
+  }
+
+  removeFilter(event): void {
+    let index = parseInt(event.currentTarget.name);
+    let oldFilters = this.state.filters;
+    var newFilters = {};
+    var current = this.state.filters[index].name;
+    if(Object.keys(this.state.filters).length == 1){
+      if(this.state.options[current] != null){
+        this.setState({
+          ...this.state,
+          options: {
+            ...this.state.options,
+            [current]: {
+              ...this.state.options[current],
+              isSelected: false
+            }
+          },
+          filters: {
+            0: {
+              index: '',
+              name: '',
+              value: ''
+            }
+          }
+        });
+      } else {
+        console.log("error");
+      }
+      //pass error up to process modal?
+    } else {
+      //unselect filter if one was selected
+      if(this.state.options[current] != null){
+        this.setState({
+          ...this.state,
+          options: {
+            ...this.state.options,
+            [current]: {
+              ...this.state.options[current],
+              isSelected: false
+            }
+          }
+        });
+        this.state.options[this.state.filters[index].name].isSelected = false;
+      }
+
+      //remove filter from old object
+      delete oldFilters[index];
+
+      //create new object with new indices
+      Object.keys(oldFilters).map((filter, index) => {
+        newFilters[index] = oldFilters[filter];
+      });
+
+      //set state with new object
+      this.setState({
+        ...this.state,
+        filters: newFilters
+      });
+    }
+  }
+
   render() {
     var options = this.state.options;
     var filters = this.state.filters;
+
     return (
       <div>
       {
         Object.keys(filters).map((filter, index) => {
           return(
-            <div>
+            <div className="searchFilters">
               <Select
+                key={"filter"+index}
+                className="searchFilter"
                 onChange={this.setFilters}
                 input={
                   <OutlinedInput
-                    autoWidth='true'
                     name={filter}
                     id="outlined-age-simple"
                     value={filters[index]['name']}
+                    labelWidth={0}
                   />}
               >
               {
-                Object.keys(options).map(option => {
+                Object.keys(options).map((option, optionIndex) => {
                   if(!options[option].isSelected || option == filters[index]['name']){
                     return(
-                      <MenuItem key={"filter"+index} value={option}>{options[option]['label']}</MenuItem>
+                      <MenuItem key={"filterOption"+optionIndex} value={option}>{options[option]['label']}</MenuItem>
                     )
                   }
                 })
               }
               </Select>
-              <TextField
-                ref="filter.name-searchField"
-                id="outlined-uncontrolled"
-                label=""
-                variant="outlined"
-                className='searchField-input'
-                onChange={this.setFilterSearchText}
-                name={filter}
-              />
+              <div className="searchFilter-input">
+                <TextField
+                  key={"filterText"+index}
+                  ref="filter.name-searchField"
+                  id="outlined-uncontrolled"
+                  label=""
+                  variant="outlined"
+                  fullWidth
+                  onChange={this.setFilterSearchText}
+                  name={filter}
+                />
+              </div>
+              <div className="filterButton">
+                <Button key={"filterAdd"+index} name={index} variant="contained" color="primary" className="filterAdd" onClick = {(event) => this.addFilter(event)}>
+                  +
+                </Button>
+              </div>
+              <div className="filterButton">
+                <Button key={"filterRemove"+index} name={index} variant="contained" color="inherit" className="filterAdd" onClick = {(event) => this.removeFilter(event)}>
+                  -
+                </Button>
+              </div>
             </div>
+          //End return of filters.map()
           )
-          })
+        })
       }
       </div>
     );
