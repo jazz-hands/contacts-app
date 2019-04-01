@@ -6,22 +6,6 @@ import './styles/SearchBox.css';
 
 class SearchBox extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      searchText: ""
-    };
-    this.handleChange = this.handleChange.bind(this);
-  };
-
-  handleChange(event): void {
-      event.persist();
-      this.setState({
-        searchText: event.target.value
-      });
-      this.props.searchFor(event.target.value, this.props.filters);
-  }
-
   render() {
     return (
       <div >
@@ -32,10 +16,11 @@ class SearchBox extends React.Component {
             label="Search"
             variant="outlined"
             className='searchField-input'
-            onChange={this.handleChange}
+            onChange={(event) => this.props.handleChange(event)}
+            value={this.props.searchText}
           />
           <span className="searchField-button">
-            <Button variant="contained" color="primary" onClick = {() => this.props.searchFor(this.state.searchText, this.props.filters)}>
+            <Button variant="contained" color="primary" onClick = {() => this.props.searchFor(this.props.searchText, this.props.filters)}>
               Submit
             </Button>
           </span>
