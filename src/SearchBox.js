@@ -9,8 +9,7 @@ class SearchBox extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchText: "",
-      filters: {}
+      searchText: ""
     };
     this.handleChange = this.handleChange.bind(this);
   };
@@ -20,17 +19,7 @@ class SearchBox extends React.Component {
       this.setState({
         searchText: event.target.value
       });
-      this.props.searchFor(event.target.value, this.state.filters);
-  }
-
-  setFilters(event){
-    event.persist();
-    this.setState({
-      ...this.state,
-      filters: {
-        name: event.target.value
-      }
-    });
+      this.props.searchFor(event.target.value, this.props.filters);
   }
 
   render() {
@@ -46,7 +35,7 @@ class SearchBox extends React.Component {
             onChange={this.handleChange}
           />
           <span className="searchField-button">
-            <Button variant="contained" color="primary" onClick = {() => this.props.searchFor(this.state.searchText, this.state.filters)}>
+            <Button variant="contained" color="primary" onClick = {() => this.props.searchFor(this.state.searchText, this.props.filters)}>
               Submit
             </Button>
           </span>

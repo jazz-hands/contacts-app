@@ -10,13 +10,24 @@ class SearchIndex extends React.Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      filters: {}
+    }
     this.searchFor = this.searchFor.bind(this);
+    this.setSearchFilters = this.setSearchFilters.bind(this);
   };
 
   searchFor(searchText, filters){
     console.log('Searching for:');
     console.log(searchText);
     console.log(filters);
+  }
+
+  setSearchFilters(filters){
+    this.setState({
+      ...this.state,
+      filters
+    });
   }
 
   render() {
@@ -27,8 +38,8 @@ class SearchIndex extends React.Component {
           <NavBar />
         </div>
         <div className='index-content'>
-          <SearchBox searchFor={this.searchFor}/>
-          <SearchFilters />
+          <SearchBox searchFor={this.searchFor} filters={this.state.filters}/>
+          <SearchFilters setSearchFilters={this.searchFilters}/>
           <IndexTable searchResults=""/>
         </div>
       </div>

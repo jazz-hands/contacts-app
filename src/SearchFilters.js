@@ -38,21 +38,12 @@ class SearchFilter extends React.Component {
         }
       }
     };
-    this.handleChange = this.handleChange.bind(this);
     this.setFilters = this.setFilters.bind(this);
     this.addFilter = this.addFilter.bind(this);
     this.removeFilter = this.removeFilter.bind(this);
     this.setFilterSearchText = this.setFilterSearchText.bind(this);
+    this.passFilters = this.passFilters.bind(this);
   };
-
-  handleChange(event): void {
-    debugger;
-      event.persist();
-      this.setState({
-        searchText: event.target.value
-      });
-      this.props.searchFor(event.target.value, this.state.options);
-  }
 
   setFilters(event): void {
     var name = event.target.value;
@@ -86,6 +77,7 @@ class SearchFilter extends React.Component {
             }
           }
         });
+        this.passFilters();
       }
     } else {
       this.setState({
@@ -106,8 +98,9 @@ class SearchFilter extends React.Component {
           }
         }
       });
+      this.passFilters();
     }
-
+    this.passFilters();
   }
 
   setFilterSearchText(event): void {
@@ -122,7 +115,13 @@ class SearchFilter extends React.Component {
           value: event.target.value
         }
       }
-    })
+    });
+    this.passFilters();
+  }
+
+  passFilters(){
+    console.log(this.state.filters);
+    this.props.setSearchFilters(this.state.filters);
   }
 
   addFilter(event): void {
@@ -156,6 +155,7 @@ class SearchFilter extends React.Component {
         filters: newFilters
       });
     }
+    this.passFilters();
   }
 
   removeFilter(event): void {
@@ -182,6 +182,7 @@ class SearchFilter extends React.Component {
             }
           }
         });
+        this.passFilters();
       } else {
         console.log("error");
       }
@@ -200,6 +201,7 @@ class SearchFilter extends React.Component {
           }
         });
         this.state.options[this.state.filters[index].name].isSelected = false;
+        this.passFilters();
       }
 
       //remove filter from old object
@@ -216,6 +218,7 @@ class SearchFilter extends React.Component {
         filters: newFilters
       });
     }
+    this.passFilters();
   }
 
   render() {
