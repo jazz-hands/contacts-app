@@ -17,34 +17,22 @@ class IndexTable extends React.Component {
     this.createData = this.createData.bind(this);
   };
 
-  createData(name, calories, fat, carbs, protein) {
+  createData(fname, lname, phoneNumber, school1) {
     let newId = this.id + 1;
-    return { newId, name, calories, fat, carbs, protein };
+    return { fname, lname, phoneNumber, school1 };
   };
 
   render() {
 
     const rows = [
-      this.createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-      this.createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-      this.createData('Eclair', 262, 16.0, 24, 6.0),
-      this.createData('Cupcake', 305, 3.7, 67, 4.3),
-      this.createData('Gingerbread', 356, 16.0, 49, 3.9),
-      this.createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-      this.createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-      this.createData('Eclair', 262, 16.0, 24, 6.0),
-      this.createData('Cupcake', 305, 3.7, 67, 4.3),
-      this.createData('Gingerbread', 356, 16.0, 49, 3.9),
-      this.createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-      this.createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-      this.createData('Eclair', 262, 16.0, 24, 6.0),
-      this.createData('Cupcake', 305, 3.7, 67, 4.3),
-      this.createData('Gingerbread', 356, 16.0, 49, 3.9),
-      this.createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-      this.createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-      this.createData('Eclair', 262, 16.0, 24, 6.0),
-      this.createData('Cupcake', 305, 3.7, 67, 4.3),
-      this.createData('Gingerbread', 356, 16.0, 49, 3.9),
+      this.createData('Jasmine', 'Quintana', '704-467-4836', 'UNC Charlotte'),
+      this.createData('Elon', 'Musk', '704-999-8565', 'Stanford'),
+      this.createData('Chris', 'Boothe', '704-154-8735', 'University of Virgina'),
+      this.createData('Monica', 'Frake', '704-478-8745', 'SUNY Maritime'),
+      this.createData('Emily', 'Best', '980-622-8778', 'UNC Charlotte'),
+      this.createData('Danielle', 'Hostetler', '980-678-1515', 'The Ohio State University'),
+      this.createData('Stern', 'Tigler', '704-467-4836', 'Clemson'),
+      this.createData('Greg', 'Cline', '704-467-4836', 'Johnson and Wales University'),
     ];
 
     return (
@@ -53,11 +41,10 @@ class IndexTable extends React.Component {
           <Table className='indexTableHeader'>
             <TableHead>
               <TableRow>
-                <TableCell>Dessert (100g serving)</TableCell>
-                <TableCell align="right" className='resultDetails-cell'>Calories</TableCell>
-                <TableCell align="right" className='resultDetails-cell'>Fat (g)</TableCell>
-                <TableCell align="right" className='resultDetails-cell'>Carbs (g)</TableCell>
-                <TableCell align="right" className='resultDetails-cell'>Protein (g)</TableCell>
+                <TableCell>First Name</TableCell>
+                <TableCell align="right" className='resultDetails-cell'>Last Name</TableCell>
+                <TableCell align="right" className='resultDetails-cell'>Phone Number</TableCell>
+                <TableCell align="right" className='resultDetails-cell'>Undergrad 1</TableCell>
               </TableRow>
             </TableHead>
           </Table>
@@ -68,12 +55,11 @@ class IndexTable extends React.Component {
               {rows.map(row => (
                 <TableRow key={row.id}>
                   <TableCell component="th" scope="row">
-                    {row.name}
+                    {row.fname}
                   </TableCell>
-                  <TableCell align="right">{row.calories}</TableCell>
-                  <TableCell align="right">{row.fat}</TableCell>
-                  <TableCell align="right">{row.carbs}</TableCell>
-                  <TableCell align="right">{row.protein}</TableCell>
+                  <TableCell align="right">{row.lname}</TableCell>
+                  <TableCell align="right">{row.phoneNumber}</TableCell>
+                  <TableCell align="right">{row.school1}</TableCell>
                 </TableRow>
               ))}
             </TableBody>

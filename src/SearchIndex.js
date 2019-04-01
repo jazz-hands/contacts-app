@@ -39,7 +39,7 @@ class SearchIndex extends React.Component {
     this.setFilterSearchText = this.setFilterSearchText.bind(this);
     this.addFilter = this.addFilter.bind(this);
     this.removeFilter = this.removeFilter.bind(this);
-    this.handleChange = this.handleChange.bind(this);
+    this.setSearchText = this.setSearchText.bind(this);
   };
 
   searchFor(searchText, filters){
@@ -48,7 +48,7 @@ class SearchIndex extends React.Component {
     console.log(filters);
   }
 
-  handleChange(event): void {
+  setSearchText(event): void {
       event.persist();
       this.setState({
         searchText: event.target.value
@@ -233,7 +233,7 @@ class SearchIndex extends React.Component {
           <SearchBox
             searchFor={this.searchFor}
             filters={this.state.filters}
-            handleChange={this.handleChange}
+            handleChange={this.setSearchText}
             searchText={this.state.searchText}
           />
           <SearchFilters
