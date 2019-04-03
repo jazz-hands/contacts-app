@@ -8,6 +8,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import Clear from '@material-ui/icons/Clear';
 import './styles/SearchFilters.css';
 
 class SearchFilter extends React.Component {

@@ -8,32 +8,21 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import './styles/IndexTable.css';
+import { withRouter } from "react-router-dom";
 
 class IndexTable extends React.Component {
 
   constructor(props) {
     super(props);
-    let id = 0;
-    this.createData = this.createData.bind(this);
+    this.selectProfile = this.selectProfile.bind(this);
   };
 
-  createData(fname, lname, phoneNumber, school1) {
-    let newId = this.id + 1;
-    return { fname, lname, phoneNumber, school1 };
-  };
+  selectProfile(uid){
+    this.props.history.push("/id/"+uid);
+  }
 
   render() {
 
-    const rows = [
-      this.createData('Jasmine', 'Quintana', '704-467-4836', 'UNC Charlotte'),
-      this.createData('Elon', 'Musk', '704-999-8565', 'Stanford'),
-      this.createData('Chris', 'Boothe', '704-154-8735', 'University of Virgina'),
-      this.createData('Monica', 'Frake', '704-478-8745', 'SUNY Maritime'),
-      this.createData('Emily', 'Best', '980-622-8778', 'UNC Charlotte'),
-      this.createData('Danielle', 'Hostetler', '980-678-1515', 'The Ohio State University'),
-      this.createData('Stern', 'Tigler', '704-467-4836', 'Clemson'),
-      this.createData('Greg', 'Cline', '704-467-4836', 'Johnson and Wales University'),
-    ];
 
     return (
       <div >
@@ -41,10 +30,9 @@ class IndexTable extends React.Component {
           <Table className='indexTableHeader'>
             <TableHead>
               <TableRow>
-                <TableCell>First Name</TableCell>
-                <TableCell align="right" className='resultDetails-cell'>Last Name</TableCell>
-                <TableCell align="right" className='resultDetails-cell'>Phone Number</TableCell>
-                <TableCell align="right" className='resultDetails-cell'>Undergrad 1</TableCell>
+                <TableCell>Name</TableCell>
+                <TableCell align="left" className='resultDetails-cell'>Phone Number</TableCell>
+                <TableCell align="left" className='resultDetails-cell'>Personal Email</TableCell>
               </TableRow>
             </TableHead>
           </Table>
@@ -52,14 +40,13 @@ class IndexTable extends React.Component {
           <Table className='indexTableResults'>
           <TableHead></TableHead>
             <TableBody>
-              {rows.map(row => (
-                <TableRow key={row.id}>
+              {this.props.contacts.map(row => (
+                <TableRow key={row.id} onClick={() => this.selectProfile(row.id)}>
                   <TableCell component="th" scope="row">
-                    {row.fname}
+                    {row.name}
                   </TableCell>
-                  <TableCell align="right">{row.lname}</TableCell>
-                  <TableCell align="right">{row.phoneNumber}</TableCell>
-                  <TableCell align="right">{row.school1}</TableCell>
+                  <TableCell align="left">{row.phoneNumber}</TableCell>
+                  <TableCell align="left">{row.personalEmail}</TableCell>
                 </TableRow>
               ))}
             </TableBody>
@@ -71,4 +58,4 @@ class IndexTable extends React.Component {
   }
 }
 
-export default IndexTable;
+export default withRouter(IndexTable);

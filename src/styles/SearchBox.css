@@ -21,10 +21,16 @@
 .searchField-button {
   flex-flow: row;
   display: inline-flex;
-  margin-left: 1em;
+  margin: 0em 1em;
 }
 
 .searchBox-container {
   margin: auto;
   width: 98vw;
+}
+
+.filters {
+  cursor: pointer;
+  font-size: 3em;
+  margin-left: auto;
 }
