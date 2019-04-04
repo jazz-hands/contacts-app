@@ -10,8 +10,8 @@ import './styles/ContactForm.css';
 import { withRouter } from "react-router-dom";
 import axios from 'axios'
 
-const BASE_URL = 'http://localhost:5000/api/v1/contacts/'
-// const BASE_URL = 'https://jasmine-contacts-api.herokuapp.com/api/v1/contacts/'
+// const BASE_URL = 'http://localhost:5000/api/v1/contacts/'
+const BASE_URL = 'https://jasmine-contacts-api.herokuapp.com/api/v1/contacts/'
 
 class EditContact extends React.Component {
   constructor(props){
