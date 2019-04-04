@@ -26,7 +26,7 @@ class SearchBox extends React.Component {
         value={this.props.searchText}
         />
         <span className="searchField-button">
-        <Button variant="contained" color="primary" onClick = {() => this.props.searchFor(this.props.searchText, this.props.filters)}>
+        <Button variant="contained" color="primary" onClick = {() => this.props.searchFor(this.refs.searchText.value, this.props.filters)}>
         Submit
         </Button>
         </span>

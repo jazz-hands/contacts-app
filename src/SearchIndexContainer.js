@@ -8,7 +8,8 @@ import NavBar from './NavBar';
 import { withRouter } from "react-router-dom";
 import axios from 'axios'
 
-const BASE_URL = 'https://jasmine-contacts-api.herokuapp.com/api/v1/contacts/'
+const BASE_URL = 'http://localhost:5000/api/v1/contacts/'
+// const BASE_URL = 'https://jasmine-contacts-api.herokuapp.com/api/v1/contacts/'
 
 class SearchIndexContainer extends React.Component {
   constructor(props) {
@@ -16,17 +17,25 @@ class SearchIndexContainer extends React.Component {
     this.state = {
       searchText: "",
       options: {
-        firstName: {
+        company: {
           isSelected: false,
-          label: 'First Name'
+          label: 'Company'
         },
-        lastName: {
+        city: {
           isSelected: false,
-          label: 'Last Name'
+          label: 'City'
+        },
+        state: {
+          isSelected: false,
+          label: 'State'
         },
         school: {
           isSelected: false,
           label: 'School'
+        },
+        degree: {
+          isSelected: false,
+          label: 'Degree'
         }
       },
       filters: {
@@ -57,9 +66,18 @@ class SearchIndexContainer extends React.Component {
   }
 
   searchFor(searchText, filters){
-    console.log('Searching for:');
-    console.log(searchText);
-    console.log(filters);
+    axios.get(BASE_URL+'search/', {
+      params : {
+        name: searchText,
+        filters : filters
+      }
+    })
+      .then(res => {
+        if(res.data.length > 0) {
+          this.setState({...this.state, contacts: res.data})
+        }
+      })
+      .catch(err => console.log(err));
   }
 
   setSearchText(event): void {
@@ -67,7 +85,7 @@ class SearchIndexContainer extends React.Component {
       this.setState({
         searchText: event.target.value
       });
-      this.searchFor(this.state.searchText, this.state.filters);
+      this.searchFor(event.target.value, this.state.filters);
   }
 
   setFilters(event): void {

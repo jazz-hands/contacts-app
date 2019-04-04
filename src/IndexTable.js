@@ -45,8 +45,8 @@ class IndexTable extends React.Component {
                   <TableCell component="th" scope="row">
                     {row.name}
                   </TableCell>
-                  <TableCell align="left">{row.phoneNumber}</TableCell>
-                  <TableCell align="left">{row.personalEmail}</TableCell>
+                  <TableCell align="left">{row.phone_number}</TableCell>
+                  <TableCell align="left">{row.personal_email}</TableCell>
                 </TableRow>
               ))}
             </TableBody>

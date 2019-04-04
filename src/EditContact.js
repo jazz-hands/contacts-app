@@ -10,13 +10,14 @@ import './styles/ContactForm.css';
 import { withRouter } from "react-router-dom";
 import axios from 'axios'
 
-const BASE_URL = 'https://jasmine-contacts-api.herokuapp.com/api/v1/contacts/'
+const BASE_URL = 'http://localhost:5000/api/v1/contacts/'
+// const BASE_URL = 'https://jasmine-contacts-api.herokuapp.com/api/v1/contacts/'
 
 class EditContact extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      contact: {"id":0,"name":"","preferredName":"","company":"","title":"","workCity":"","workState":"","residenceCity":"","residenceState":"","undergradSchool":"","undergradDegree":"","gradSchool1":"","gradSchool1Degree":"","gradSchool2":"","gradSchool2Degree":"","workEmail":"","personalEmail":"","phoneNumber":""}
+      contact: {"id":0,"name":"","preferred_name":"","company":"","title":"","work_city":"","work_state":"","residence_city":"","residence_state":"","undergrad_school":"","undergrad_degree":"","grad_school1":"","grad_school1_degree":"","grad_school2":"","grad_school2_degree":"","work_email":"","personal_email":"","phone_number":""}
     }
     this.getContact = this.getContact.bind(this);
     this.getContact();
@@ -82,7 +83,7 @@ class EditContact extends React.Component {
             </InputLabel>
             <Input
               id="cfPreferredName"
-              value={c.preferredName}
+              value={c.preferred_name}
               name="preferredName"
               onChange={(event) => this.setLocalContact(event)}
             />
@@ -127,7 +128,7 @@ class EditContact extends React.Component {
             </InputLabel>
             <Input
               id="cfWorkCity"
-              value={c.workCity}
+              value={c.work_city}
               name="workCity"
               onChange={(event) => this.setLocalContact(event)}
             />
@@ -142,7 +143,7 @@ class EditContact extends React.Component {
             </InputLabel>
             <Input
               id="cfWorkState"
-              value={c.workState}
+              value={c.work_state}
               name="workState"
               onChange={(event) => this.setLocalContact(event)}
             />
@@ -157,7 +158,7 @@ class EditContact extends React.Component {
             </InputLabel>
             <Input
               id="cfResidenceCity"
-              value={c.residenceCity}
+              value={c.residence_city}
               name="residenceCity"
               onChange={(event) => this.setLocalContact(event)}
             />
@@ -172,7 +173,7 @@ class EditContact extends React.Component {
             </InputLabel>
             <Input
               id="cfResidenceState"
-              value={c.residenceState}
+              value={c.residence_state}
               name="residenceState"
               onChange={(event) => this.setLocalContact(event)}
             />
@@ -187,7 +188,7 @@ class EditContact extends React.Component {
             </InputLabel>
             <Input
               id="cfSchoolUndergrad"
-              value={c.undergradSchool}
+              value={c.undergrad_school}
               name="undergradSchool"
               onChange={(event) => this.setLocalContact(event)}
             />
@@ -202,7 +203,7 @@ class EditContact extends React.Component {
             </InputLabel>
             <Input
               id="cfDegreelUndergrad"
-              value={c.undergradDegree}
+              value={c.undergrad_degree}
               name="undergradDegree"
               onChange={(event) => this.setLocalContact(event)}
             />
@@ -217,7 +218,7 @@ class EditContact extends React.Component {
             </InputLabel>
             <Input
               id="cfGradSchool1"
-              value={c.gradSchool1}
+              value={c.grad_school1}
               name="gradSchool1"
               onChange={(event) => this.setLocalContact(event)}
             />
@@ -232,7 +233,7 @@ class EditContact extends React.Component {
             </InputLabel>
             <Input
               id="cfGradDegree1"
-              value={c.gradSchool1Degree}
+              value={c.grad_school1_degree}
               name="gradSchool1Degree"
               onChange={(event) => this.setLocalContact(event)}
             />
@@ -247,7 +248,7 @@ class EditContact extends React.Component {
             </InputLabel>
             <Input
               id="cfGradSchool2"
-              value={c.gradSchool2}
+              value={c.grad_school2}
               name="gradSchool2"
               onChange={(event) => this.setLocalContact(event)}
             />
@@ -262,7 +263,7 @@ class EditContact extends React.Component {
             </InputLabel>
             <Input
               id="cfGradDegree2"
-              value={c.gradSchool2Degree}
+              value={c.grad_school2_degree}
               name="gradSchool2Degree"
               onChange={(event) => this.setLocalContact(event)}
             />
@@ -277,7 +278,7 @@ class EditContact extends React.Component {
             </InputLabel>
             <Input
               id="cfWorkEmail"
-              value={c.workEmail}
+              value={c.work_email}
               name="workEmail"
               onChange={(event) => this.setLocalContact(event)}
             />
@@ -292,7 +293,7 @@ class EditContact extends React.Component {
             </InputLabel>
             <Input
               id="cfPersonalEmail"
-              value={c.personalEmail}
+              value={c.personal_email}
               name="personalEmail"
               onChange={(event) => this.setLocalContact(event)}
             />
@@ -307,7 +308,7 @@ class EditContact extends React.Component {
             </InputLabel>
             <Input
               id="cfPhoneNumber"
-              value={c.phoneNumber}
+              value={c.phone_number}
               name="phoneNumber"
               onChange={(event) => this.setLocalContact(event)}
             />
