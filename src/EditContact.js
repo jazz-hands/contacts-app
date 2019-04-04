@@ -10,8 +10,13 @@ import './styles/ContactForm.css';
 import { withRouter } from "react-router-dom";
 import axios from 'axios'
 
-// const BASE_URL = 'http://localhost:5000/api/v1/contacts/'
-const BASE_URL = 'https://jasmine-contacts-api.herokuapp.com/api/v1/contacts/'
+let BASE_URL = ""
+
+if (process.env.NODE_ENV !== 'production') {
+  BASE_URL = 'http://localhost:5000/api/v1/contacts/'
+} else {
+  BASE_URL = 'https://jasmine-contacts-api.herokuapp.com/api/v1/contacts/'
+}
 
 class EditContact extends React.Component {
   constructor(props){
@@ -46,6 +51,19 @@ class EditContact extends React.Component {
         [key]: event.currentTarget.value
       }
     })
+  }
+
+  updateContact(){
+    const params = {
+      id: this.props.match.params.id,
+      contact: this.state.contact
+    }
+    axios.post(BASE_URL+'update', {params})
+      .then(res => this.setState({
+        ...this.state,
+        contact: res.data
+      }))
+      .catch(err => console.log(err));
   }
 
   render() {
