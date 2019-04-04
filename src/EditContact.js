@@ -25,6 +25,7 @@ class EditContact extends React.Component {
       contact: {"id":0,"name":"","preferred_name":"","company":"","title":"","work_city":"","work_state":"","residence_city":"","residence_state":"","undergrad_school":"","undergrad_degree":"","grad_school1":"","grad_school1_degree":"","grad_school2":"","grad_school2_degree":"","work_email":"","personal_email":"","phone_number":""}
     }
     this.getContact = this.getContact.bind(this);
+    this.updateContact = this.updateContact.bind(this);
     this.getContact();
   }
 
@@ -58,7 +59,7 @@ class EditContact extends React.Component {
       id: this.props.match.params.id,
       contact: this.state.contact
     }
-    axios.post(BASE_URL+'update', {params})
+    axios.post(BASE_URL+'update', params)
       .then(res => this.setState({
         ...this.state,
         contact: res.data
@@ -102,7 +103,7 @@ class EditContact extends React.Component {
             <Input
               id="cfPreferredName"
               value={c.preferred_name}
-              name="preferredName"
+              name="preferred_name"
               onChange={(event) => this.setLocalContact(event)}
             />
           </FormControl>
@@ -147,7 +148,7 @@ class EditContact extends React.Component {
             <Input
               id="cfWorkCity"
               value={c.work_city}
-              name="workCity"
+              name="work_city"
               onChange={(event) => this.setLocalContact(event)}
             />
           </FormControl>
@@ -162,7 +163,7 @@ class EditContact extends React.Component {
             <Input
               id="cfWorkState"
               value={c.work_state}
-              name="workState"
+              name="work_state"
               onChange={(event) => this.setLocalContact(event)}
             />
           </FormControl>
@@ -177,7 +178,7 @@ class EditContact extends React.Component {
             <Input
               id="cfResidenceCity"
               value={c.residence_city}
-              name="residenceCity"
+              name="residence_city"
               onChange={(event) => this.setLocalContact(event)}
             />
           </FormControl>
@@ -192,7 +193,7 @@ class EditContact extends React.Component {
             <Input
               id="cfResidenceState"
               value={c.residence_state}
-              name="residenceState"
+              name="residence_state"
               onChange={(event) => this.setLocalContact(event)}
             />
           </FormControl>
@@ -207,7 +208,7 @@ class EditContact extends React.Component {
             <Input
               id="cfSchoolUndergrad"
               value={c.undergrad_school}
-              name="undergradSchool"
+              name="undergrad_school"
               onChange={(event) => this.setLocalContact(event)}
             />
           </FormControl>
@@ -222,7 +223,7 @@ class EditContact extends React.Component {
             <Input
               id="cfDegreelUndergrad"
               value={c.undergrad_degree}
-              name="undergradDegree"
+              name="undergrad_degree"
               onChange={(event) => this.setLocalContact(event)}
             />
           </FormControl>
@@ -237,7 +238,7 @@ class EditContact extends React.Component {
             <Input
               id="cfGradSchool1"
               value={c.grad_school1}
-              name="gradSchool1"
+              name="grad_school1"
               onChange={(event) => this.setLocalContact(event)}
             />
           </FormControl>
@@ -252,7 +253,7 @@ class EditContact extends React.Component {
             <Input
               id="cfGradDegree1"
               value={c.grad_school1_degree}
-              name="gradSchool1Degree"
+              name="grad_school1_degree"
               onChange={(event) => this.setLocalContact(event)}
             />
           </FormControl>
@@ -267,7 +268,7 @@ class EditContact extends React.Component {
             <Input
               id="cfGradSchool2"
               value={c.grad_school2}
-              name="gradSchool2"
+              name="grad_school2"
               onChange={(event) => this.setLocalContact(event)}
             />
           </FormControl>
@@ -282,7 +283,7 @@ class EditContact extends React.Component {
             <Input
               id="cfGradDegree2"
               value={c.grad_school2_degree}
-              name="gradSchool2Degree"
+              name="grad_school2_degree"
               onChange={(event) => this.setLocalContact(event)}
             />
           </FormControl>
@@ -297,7 +298,7 @@ class EditContact extends React.Component {
             <Input
               id="cfWorkEmail"
               value={c.work_email}
-              name="workEmail"
+              name="work_email"
               onChange={(event) => this.setLocalContact(event)}
             />
           </FormControl>
@@ -312,7 +313,7 @@ class EditContact extends React.Component {
             <Input
               id="cfPersonalEmail"
               value={c.personal_email}
-              name="personalEmail"
+              name="personal_email"
               onChange={(event) => this.setLocalContact(event)}
             />
           </FormControl>
@@ -327,7 +328,7 @@ class EditContact extends React.Component {
             <Input
               id="cfPhoneNumber"
               value={c.phone_number}
-              name="phoneNumber"
+              name="phone_number"
               onChange={(event) => this.setLocalContact(event)}
             />
           </FormControl>
@@ -340,6 +341,7 @@ class EditContact extends React.Component {
                 color="primary"
                 fullWidth={false}
                 className="LoginForm-SubmitButton"
+                onClick={() => this.updateContact()}
               >
                 Save
             </Button>
