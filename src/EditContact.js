@@ -26,6 +26,8 @@ class EditContact extends React.Component {
     }
     this.getContact = this.getContact.bind(this);
     this.updateContact = this.updateContact.bind(this);
+    this.deleteContact = this.deleteContact.bind(this);
+    this.setLocalContact = this.setLocalContact.bind(this);
     this.getContact();
   }
 
@@ -34,7 +36,7 @@ class EditContact extends React.Component {
     const params = {
       id: this.props.match.params.id
     }
-    axios.get(BASE_URL+'read', {params})
+    axios.get(BASE_URL+"read", {params})
       .then(res => this.setState({
         ...this.state,
         contact: res.data
@@ -54,17 +56,47 @@ class EditContact extends React.Component {
     })
   }
 
-  updateContact(){
-    const params = {
-      id: this.props.match.params.id,
-      contact: this.state.contact
-    }
-    axios.post(BASE_URL+'update', params)
-      .then(res => this.setState({
-        ...this.state,
-        contact: res.data
-      }))
-      .catch(err => console.log(err));
+  updateContact(event){
+    axios({
+      method: "post",
+      baseURL: BASE_URL,
+      url: "update/",
+      data: { id: this.props.match.params.id,
+        contact: this.state.contact
+      },
+      config: { headers: {"Content-Type": "multipart/form-data" }}
+    }).then((res) =>{
+      console.log(res.data);
+      if(res.data["message"]){
+        this.setState({...this.state, message: res.data["message"]});
+      } else {
+        this.props.history.push("/id/"+res.data.id);
+      }
+    }).catch((e)=>{
+      this.setState({...this.state, message: e});
+    });
+    event.preventDefault();
+  }
+
+  deleteContact(event){
+    axios({
+      method: "post",
+      baseURL: BASE_URL,
+      url: "delete/",
+      data: { id: this.props.match.params.id },
+      config: { headers: {"Content-Type": "multipart/form-data" }}
+    }).then((res) =>{
+      console.log(res.data);
+      if(res.data["message"]){
+        this.setState({...this.state, message: res.data["message"]});
+      } else {
+        this.setState({...this.state, message: res.data["deleted"]});
+        this.props.history.push("/");
+      }
+    }).catch((e)=>{
+      this.setState({...this.state, message: e});
+    });
+    event.preventDefault();
   }
 
   render() {
@@ -74,9 +106,21 @@ class EditContact extends React.Component {
       <form className='LoginForm'>
         <Paper className='LoginForm'>
         <span className='LoginForm-fullWidth'>
-          <Typography variant="h6">
-            Editing {c.name}'s Profile
-          </Typography>
+          <div className="Form-heading">
+            <Typography variant="h6">
+              Editing {c.name}'s Profile
+            </Typography>
+            <Button
+                type="submit"
+                variant="contained"
+                color="secondary"
+                fullWidth={false}
+                className="Form-delete"
+                onClick={(event) => this.deleteContact(event)}
+              >
+                Delete
+            </Button>
+          </div>
           <FormControl margin="dense" className="leftInput" fullWidth>
             <InputLabel
               htmlFor="cfName"
@@ -341,7 +385,7 @@ class EditContact extends React.Component {
                 color="primary"
                 fullWidth={false}
                 className="LoginForm-SubmitButton"
-                onClick={() => this.updateContact()}
+                onClick={(event) => this.updateContact(event)}
               >
                 Save
             </Button>

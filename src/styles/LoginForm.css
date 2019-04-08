@@ -12,3 +12,12 @@
 .LoginForm-SubmitButton {
   align-self: center;
 }
+
+.Form-heading {
+  display: flex;
+}
+
+.Form-delete {
+  margin-left: auto;
+  display: block;
+}
