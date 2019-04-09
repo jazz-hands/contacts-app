@@ -14,7 +14,7 @@ if (process.env.NODE_ENV !== 'production') {
   BASE_URL = 'https://jasmine-contacts-api.herokuapp.com/api/v1/contacts/'
 }
 
-class RegisterContactContainer extends React.Component {
+class AddContactContainer extends React.Component {
 
   constructor(props){
     super(props);
@@ -23,7 +23,7 @@ class RegisterContactContainer extends React.Component {
     }
     this.createContact = this.createContact.bind(this);
     this.setContact = this.setContact.bind(this);
-    props.history.push('/register');
+    props.history.push('/add');
   }
 
   createContact(event){
@@ -73,4 +73,4 @@ class RegisterContactContainer extends React.Component {
   }
 }
 
-export default withRouter(RegisterContactContainer);
+export default withRouter(AddContactContainer);

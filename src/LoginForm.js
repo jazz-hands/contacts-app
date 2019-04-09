@@ -8,6 +8,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import './styles/LoginForm.css';
 import axios from 'axios'
+import { withRouter } from "react-router-dom";
 
 let BASE_URL = ""
 
@@ -27,35 +28,7 @@ class LoginForm extends React.Component {
         password: ''
       }
     };
-    this.login = this.login.bind(this);
     this.onChange = this.onChange.bind(this);
-  }
-
-  login(event){
-    axios.post( BASE_URL+"user/login/", {
-      user: this.state.user
-      },
-      { headers: {"Content-Type": "multipart/form-data" }}
-    )
-    .then((res) =>{
-      console.log(res);
-    }).catch((e)=>{
-      console.log(e);
-    });
-    event.preventDefault();
-    // axios({
-    //   method: 'post',
-    //   baseURL: BASE_URL,
-    //   url: 'user/login/',
-    //   data: {
-    //     user: this.state.user
-    //   },
-    //   config: { headers: {'Content-Type': 'multipart/form-data' }}
-    // }).then((res) =>{
-    //   console.log(res);
-    // }).catch((e)=>{
-    //   console.log(e);
-    // });
   }
 
   onChange(event){
@@ -71,7 +44,6 @@ class LoginForm extends React.Component {
   }
 
   render() {
-
   return (
     <div>
       <form className='LoginForm'>
@@ -112,7 +84,7 @@ class LoginForm extends React.Component {
                 color="primary"
                 fullWidth={false}
                 className="LoginForm-SubmitButton"
-                onClick={(event) => this.login(event)}
+                onClick={(event) => this.props.login(event, this.state.user)}
               >
                 Sign in
             </Button>
@@ -128,4 +100,4 @@ class LoginForm extends React.Component {
     );
   }
 }
-export default LoginForm;
+export default withRouter(LoginForm);

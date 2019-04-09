@@ -6,7 +6,9 @@ import { withRouter } from "react-router-dom";
 import './styles/SearchIndex.css';
 
 class EditContactContainer extends React.Component {
-
+  constructor(props){
+    super(props);
+  }
   render() {
 
     return (
