@@ -115,7 +115,7 @@ class EditContact extends React.Component {
                 variant="contained"
                 color="secondary"
                 fullWidth={false}
-                className="Form-delete"
+                style={{"marginLeft": "auto"}}
                 onClick={(event) => this.deleteContact(event)}
               >
                 Delete
