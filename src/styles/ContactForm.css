@@ -36,3 +36,43 @@
   width: 50%;
   margin-top: .5em;
 }
+
+.Form-delete {
+  margin-left: auto;
+}
+
+.UserForm {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 2em;
+  margin: auto;
+  margin-bottom: 0em;
+}
+
+.UserForm-fullWidth-submit {
+  margin-top: 1.5em;
+  width: 100%;
+  padding: 2em 0em;
+}
+
+.UserForm-halfWidth-left {
+  display: block;
+  width: 47%;
+  padding-right: 1%;
+  margin-top: .5em;
+  padding-left: 2em;
+  padding-bottom: .5em;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.UserForm-halfWidth-right {
+  display: block;
+  width: 47%;
+  margin-top: .5em;
+  padding-right: 2em;
+  padding-bottom: .5em;
+  margin-left: auto;
+  margin-right: auto;
+}
