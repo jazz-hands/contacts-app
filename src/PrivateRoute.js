@@ -8,7 +8,7 @@ const PrivateRoute = ({component: Component, authed, ...rest}) => {
     <Route
       {...rest}
       render={(props) => authed === true
-        ? <Component {...props} />
+        ? <Component {...props} {...rest}/>
         : <LoginForm {...props} {...rest}/>}
     />
   )

@@ -29,10 +29,18 @@ class Routing extends Component {
       session: {}
     };
   this.login = this.login.bind(this);
+  this.logout = this.logout.bind(this);
   };
 
   isSessionActive(){
     return false
+  }
+
+  logout(event){
+    event.preventDefault();
+    console.log("logging out");
+    this.setState({ ...this.state, isLoggedIn: false, user: {} });
+    this.props.history.push('/');
   }
 
   login(event, user){
@@ -47,7 +55,7 @@ class Routing extends Component {
       if(res.data["message"]){
         this.setState({...this.state, message: res.data["message"]});
       } else {
-        this.setState({...this.state, isLoggedIn: true, session: res.data["token"]});
+        this.setState({...this.state, isLoggedIn: true, user: res.data["user"]});
         //set token in local storage
 
         return <Redirect to="/" />
@@ -64,11 +72,11 @@ class Routing extends Component {
       <Router>
         <div>
           <Route path="/register" component={RegisterContactContainer} />
-          <PrivateRoute login={this.login} authed={this.state.isLoggedIn} path='/id/:id/edit' component={EditContactContainer} />
-          <PrivateRoute login={this.login} authed={this.state.isLoggedIn} path='/id/:id' component={ViewContactContainer} />
-          <PrivateRoute login={this.login} authed={this.state.isLoggedIn} path='/edit/:id' component={EditContactContainer} />
-          <PrivateRoute login={this.login} authed={this.state.isLoggedIn} path='/add' component={AddContactContainer} />
-          <PrivateRoute login={this.login} authed={this.state.isLoggedIn} exact path='/' component={SearchIndexContainer} />
+          <PrivateRoute user={this.state.user} login={this.login} logout={this.logout} authed={this.state.isLoggedIn} path='/id/:id/edit' component={EditContactContainer} />
+          <PrivateRoute user={this.state.user} login={this.login} logout={this.logout} authed={this.state.isLoggedIn} path='/id/:id' component={ViewContactContainer} />
+          <PrivateRoute user={this.state.user} login={this.login} logout={this.logout} authed={this.state.isLoggedIn} path='/edit/:id' component={EditContactContainer} />
+          <PrivateRoute user={this.state.user} login={this.login} logout={this.logout} authed={this.state.isLoggedIn} path='/add' component={AddContactContainer} />
+          <PrivateRoute user={this.state.user} login={this.login} logout={this.logout} authed={this.state.isLoggedIn} exact path='/' component={SearchIndexContainer} />
         </div>
       </Router>
       </div>

@@ -51,6 +51,9 @@ class ViewContact extends React.Component {
 
   render() {
     let c = this.state.contact
+    if(window.location.pathname != this.props.current){
+      this.getContact();
+    }
   return (
     <div>
       <form className='LoginForm'>

@@ -33,7 +33,7 @@ class EditContact extends React.Component {
 
   // Get contact ID from params when redirected and call API to set Local contact state
   getContact(){
-    const params = {
+    var params = {
       id: this.props.match.params.id
     }
     axios.get(BASE_URL+"read", {params})

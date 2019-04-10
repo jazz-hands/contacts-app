@@ -14,7 +14,7 @@ class EditContactContainer extends React.Component {
     return (
       <div className='index-container'>
         <div className='index-content-header'>
-          <NavBar backMenu={true} backTitle="Back"/>
+          <NavBar backMenu={true} backTitle="Back" user={this.props.user} logout={this.props.logout} authed={this.props.isLoggedIn}/>
         </div>
         <div className='index-content'>
           <EditContact />

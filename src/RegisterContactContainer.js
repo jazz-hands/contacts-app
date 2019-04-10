@@ -79,7 +79,7 @@ class RegisterContactContainer extends React.Component {
     return (
       <div className='index-container'>
         <div className='index-content-header'>
-          <NavBar />
+          <NavBar authed={this.props.isLoggedIn} />
         </div>
         <div className='index-content'>
           <UserForm setUser={this.setUser} user={this.state.user} />

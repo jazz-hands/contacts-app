@@ -9,7 +9,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import Menu from '@material-ui/core/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import { withRouter } from "react-router-dom";
+import { withRouter, Redirect } from "react-router-dom";
 
 class NavBar extends React.Component {
 
@@ -49,11 +49,30 @@ handleMenu(event) {
   }));
 }
 
-handleClose() {
+handleClose(event) {
+  event.preventDefault();
   console.log('handleClose, open is '+this.state.open );
   this.setState(state => ({
     open: false
   }));
+  switch (event.target.innerText) {
+    case "Contact Profile":
+      console.log("going to contact Profile")
+      var id = "/id/"+this.props.user.contact_id
+      this.props.history.push(id);
+      this.props.setCurrent(id)
+      break;
+    case "User Account":
+      console.log("going to user account")
+      break;
+    case "Logout":
+      console.log("log out!");
+      this.props.logout(event);
+      break;
+    default:
+    console.log("no matching links!")
+      // Create error modal for broken links
+  }
 }
 
   render() {
@@ -93,10 +112,11 @@ handleClose() {
                     id="menu-appbar"
                     anchorEl={this.state.anchorEl}
                     open={this.state.open}
-                    onClose={this.handleClose}
+                    onClose={(event) => this.handleClose(event)}
                   >
-                    <MenuItem onClick={this.handleClose}>Profile</MenuItem>
-                    <MenuItem onClick={this.handleClose}>My account</MenuItem>
+                    <MenuItem onClick={(event) => this.handleClose(event)}>Contact Profile</MenuItem>
+                    <MenuItem onClick={(event) => this.handleClose(event)}>User Account</MenuItem>
+                    <MenuItem onClick={(event) => this.handleClose(event)}>Logout</MenuItem>
                   </Menu>
                   </div>
             )}
@@ -127,10 +147,11 @@ handleClose() {
                     id="menu-appbar"
                     anchorEl={this.state.anchorEl}
                     open={this.state.open}
-                    onClose={this.handleClose}
+                    onClose={(event) => this.handleClose(event)}
                   >
-                    <MenuItem onClick={this.handleClose}>Profile</MenuItem>
-                    <MenuItem onClick={this.handleClose}>My account</MenuItem>
+                  <MenuItem onClick={(event) => this.handleClose(event)}>Contact Profile</MenuItem>
+                  <MenuItem onClick={(event) => this.handleClose(event)}>User Account</MenuItem>
+                  <MenuItem onClick={(event) => this.handleClose(event)}>Logout</MenuItem>
                   </Menu>
                   </div>
             )}

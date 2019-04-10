@@ -63,7 +63,7 @@ class AddContactContainer extends React.Component {
     return (
       <div className='index-container'>
         <div className='index-content-header'>
-          <NavBar />
+          <NavBar user={this.props.user} logout={this.props.logout} authed={this.props.isLoggedIn} />
         </div>
         <div className='index-content'>
           <ContactForm contact={this.state.contact} createContact={this.createContact} setContact={this.setContact}/>
