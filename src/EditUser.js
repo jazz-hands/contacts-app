@@ -6,52 +6,76 @@ import Button from '@material-ui/core/Button';
 import Link from '@material-ui/core/Link';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
+import './styles/ContactForm.css';
 import { withRouter } from "react-router-dom";
-import Edit from '@material-ui/icons/Edit';
-import './styles/ViewContact.css';
 import axios from 'axios'
 
 let BASE_URL = ""
 
 if (process.env.NODE_ENV !== 'production') {
-  BASE_URL = 'http://localhost:5000/api/v1/contacts/'
+  BASE_URL = 'http://localhost:5000/api/v1/user/'
 } else {
-  BASE_URL = 'https://jasmine-contacts-api.herokuapp.com/api/v1/contacts/'
+  BASE_URL = 'https://jasmine-contacts-api.herokuapp.com/api/v1/user/'
 }
 
-class ViewContact extends React.Component {
+class EditUser extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      contact: {"id":0,"name":"","preferred_name":"","company":"","title":"","work_city":"","work_state":"","residence_city":"","residence_state":"","undergrad_school":"","undergrad_degree":"","grad_school1":"","grad_school1_degree":"","grad_school2":"","grad_school2_degree":"","work_email":"","personal_email":"","phone_number":""}
+      user: this.props.user
     }
-    this.getContact = this.getContact.bind(this);
-    this.editProfile = this.editProfile.bind(this);
-    this.getContact();
+    this.updateUser = this.updateUser.bind(this);
+    this.deleteUser = this.deleteUser.bind(this);
+    this.getUser();
   }
 
-  componentDidUpdate(prevProps, prevState){
-    if(!window.location.pathname.includes(this.state.contact.id)) {
-      this.getContact();
-    }
-  }
-
-  // Get contact ID from params when redirected and call API to set Local contact state
-  getContact(){
-    axios.get(BASE_URL+'read', {
-      params: {
-        id: this.props.match.params.id
+  updateUser(event){
+    axios({
+      method: "post",
+      baseURL: BASE_URL,
+      url: "update/",
+      data: { id: this.props.match.params.id,
+        user: this.state.user
+      },
+      config: { headers: {"Content-Type": "multipart/form-data" }}
+    }).then((res) =>{
+      console.log(res.data);
+      if(res.data["message"]){
+        this.setState({...this.state, message: res.data["message"]});
+      } else {
+        console.log('update user with data from response')
+        this.setState({
+          ...this.state,
+          user: {
+            ...this.state.user
+          }
+        });
       }
-    })
-    .then(res => this.setState({
-      ...this.state,
-      contact: res.data
-    }))
-    .catch(err => console.log(err));
+    }).catch((e)=>{
+      this.setState({...this.state, message: e});
+    });
+    event.preventDefault();
   }
 
-  editProfile(){
-    this.props.history.push("/edit/"+this.props.match.params.id)
+  deleteUser(event){
+    axios({
+      method: "post",
+      baseURL: BASE_URL,
+      url: "delete/",
+      data: { id: this.props.match.params.id },
+      config: { headers: {"Content-Type": "multipart/form-data" }}
+    }).then((res) =>{
+      console.log(res.data);
+      if(res.data["message"]){
+        this.setState({...this.state, message: res.data["message"]});
+      } else {
+        this.setState({...this.state, message: res.data["deleted"]});
+        this.props.history.push("/");
+      }
+    }).catch((e)=>{
+      this.setState({...this.state, message: e});
+    });
+    event.preventDefault();
   }
 
   render() {
@@ -60,11 +84,22 @@ class ViewContact extends React.Component {
     <div>
       <form className='LoginForm'>
         <Paper className='LoginForm'>
-          <Typography variant="h5">
-          {c.name}'s Profile
-          </Typography>
-          <Edit onClick={this.editProfile} className="editIcon"/>
-          <span className='LoginForm-fullWidth'>
+        <span className='LoginForm-fullWidth'>
+          <div className="Form-heading">
+            <Typography variant="h6">
+              Editing {c.name}'s Profile
+            </Typography>
+            <Button
+                type="submit"
+                variant="contained"
+                color="secondary"
+                fullWidth={false}
+                style={{"marginLeft": "auto"}}
+                onClick={(event) => this.deleteContact(event)}
+              >
+                Delete
+            </Button>
+          </div>
           <FormControl margin="dense" className="leftInput" fullWidth>
             <InputLabel
               htmlFor="cfName"
@@ -74,6 +109,7 @@ class ViewContact extends React.Component {
             </InputLabel>
             <Input
               name="name"
+              onChange={(event) => this.setLocalContact(event)}
               value={c.name}
               id="cfName"
             />
@@ -90,7 +126,8 @@ class ViewContact extends React.Component {
             <Input
               id="cfPreferredName"
               value={c.preferred_name}
-              name="preferredName"
+              name="preferred_name"
+              onChange={(event) => this.setLocalContact(event)}
             />
           </FormControl>
         </span>
@@ -105,6 +142,7 @@ class ViewContact extends React.Component {
               id="cfCompany"
               value={c.company}
               name="company"
+              onChange={(event) => this.setLocalContact(event)}
             />
           </FormControl>
         </span>
@@ -119,6 +157,7 @@ class ViewContact extends React.Component {
               id="cfTitle"
               value={c.title}
               name="title"
+              onChange={(event) => this.setLocalContact(event)}
             />
           </FormControl>
         </span>
@@ -132,7 +171,8 @@ class ViewContact extends React.Component {
             <Input
               id="cfWorkCity"
               value={c.work_city}
-              name="workCity"
+              name="work_city"
+              onChange={(event) => this.setLocalContact(event)}
             />
           </FormControl>
         </span>
@@ -146,7 +186,8 @@ class ViewContact extends React.Component {
             <Input
               id="cfWorkState"
               value={c.work_state}
-              name="workState"
+              name="work_state"
+              onChange={(event) => this.setLocalContact(event)}
             />
           </FormControl>
         </span>
@@ -160,7 +201,8 @@ class ViewContact extends React.Component {
             <Input
               id="cfResidenceCity"
               value={c.residence_city}
-              name="residenceCity"
+              name="residence_city"
+              onChange={(event) => this.setLocalContact(event)}
             />
           </FormControl>
         </span>
@@ -174,7 +216,8 @@ class ViewContact extends React.Component {
             <Input
               id="cfResidenceState"
               value={c.residence_state}
-              name="residenceState"
+              name="residence_state"
+              onChange={(event) => this.setLocalContact(event)}
             />
           </FormControl>
         </span>
@@ -188,7 +231,8 @@ class ViewContact extends React.Component {
             <Input
               id="cfSchoolUndergrad"
               value={c.undergrad_school}
-              name="undergradSchool"
+              name="undergrad_school"
+              onChange={(event) => this.setLocalContact(event)}
             />
           </FormControl>
         </span>
@@ -202,7 +246,8 @@ class ViewContact extends React.Component {
             <Input
               id="cfDegreelUndergrad"
               value={c.undergrad_degree}
-              name="undergradDegree"
+              name="undergrad_degree"
+              onChange={(event) => this.setLocalContact(event)}
             />
           </FormControl>
         </span>
@@ -216,7 +261,8 @@ class ViewContact extends React.Component {
             <Input
               id="cfGradSchool1"
               value={c.grad_school1}
-              name="gradSchool1"
+              name="grad_school1"
+              onChange={(event) => this.setLocalContact(event)}
             />
           </FormControl>
         </span>
@@ -230,7 +276,8 @@ class ViewContact extends React.Component {
             <Input
               id="cfGradDegree1"
               value={c.grad_school1_degree}
-              name="gradSchool1Degree"
+              name="grad_school1_degree"
+              onChange={(event) => this.setLocalContact(event)}
             />
           </FormControl>
         </span>
@@ -244,7 +291,8 @@ class ViewContact extends React.Component {
             <Input
               id="cfGradSchool2"
               value={c.grad_school2}
-              name="gradSchool2"
+              name="grad_school2"
+              onChange={(event) => this.setLocalContact(event)}
             />
           </FormControl>
         </span>
@@ -258,7 +306,8 @@ class ViewContact extends React.Component {
             <Input
               id="cfGradDegree2"
               value={c.grad_school2_degree}
-              name="gradSchool2Degree"
+              name="grad_school2_degree"
+              onChange={(event) => this.setLocalContact(event)}
             />
           </FormControl>
         </span>
@@ -272,7 +321,8 @@ class ViewContact extends React.Component {
             <Input
               id="cfWorkEmail"
               value={c.work_email}
-              name="workEmail"
+              name="work_email"
+              onChange={(event) => this.setLocalContact(event)}
             />
           </FormControl>
         </span>
@@ -286,7 +336,8 @@ class ViewContact extends React.Component {
             <Input
               id="cfPersonalEmail"
               value={c.personal_email}
-              name="personalEmail"
+              name="personal_email"
+              onChange={(event) => this.setLocalContact(event)}
             />
           </FormControl>
         </span>
@@ -300,8 +351,28 @@ class ViewContact extends React.Component {
             <Input
               id="cfPhoneNumber"
               value={c.phone_number}
-              name="phoneNumber"
+              name="phone_number"
+              onChange={(event) => this.setLocalContact(event)}
             />
+          </FormControl>
+        </span>
+        <span className='LoginForm-fullWidth-submit'>
+          <FormControl fullWidth>
+            <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                fullWidth={false}
+                className="LoginForm-SubmitButton"
+                onClick={(event) => this.updateContact(event)}
+              >
+                Save
+            </Button>
+          </FormControl>
+          <FormControl  fullWidth>
+            <Link className="LoginForm-forgotPasswordLink">
+              Cancel
+            </Link>
           </FormControl>
         </span>
         </Paper>
@@ -310,10 +381,4 @@ class ViewContact extends React.Component {
     );
   }
 }
-export default withRouter(ViewContact);
-
-
-// if(window.location.pathname != this.props.current){
-//   debugger;
-//   this.getContact();
-// }
+export default withRouter(EditUser);

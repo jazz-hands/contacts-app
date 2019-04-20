@@ -60,7 +60,6 @@ handleClose(event) {
       console.log("going to contact Profile")
       var id = "/id/"+this.props.user.contact_id
       this.props.history.push(id);
-      this.props.setCurrent(id)
       break;
     case "User Account":
       console.log("going to user account")
