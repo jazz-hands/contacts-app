@@ -17,6 +17,8 @@ if (process.env.NODE_ENV !== 'production') {
 } else {
   BASE_URL = 'https://jasmine-contacts-api.herokuapp.com/api/v1/'
 }
+console.log(process.env.NODE_ENV);
+console.log(BASE_URL);
 
 
 class LoginForm extends React.Component {
