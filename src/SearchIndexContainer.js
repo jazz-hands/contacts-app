@@ -62,6 +62,7 @@ class SearchIndexContainer extends React.Component {
     this.setSearchText = this.setSearchText.bind(this);
     this.filterMenu = this.filterMenu.bind(this);
     this.getContacts();
+    this.props.isSessionActive();
   };
 
   getContacts(){

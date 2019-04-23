@@ -30,6 +30,7 @@ class ViewContact extends React.Component {
     this.getContact();
   }
 
+//force update if page URL changes but component has already mounted
   componentDidUpdate(prevProps, prevState){
     if(!window.location.pathname.includes(this.state.contact.id)) {
       this.getContact();
@@ -311,9 +312,3 @@ class ViewContact extends React.Component {
   }
 }
 export default withRouter(ViewContact);
-
-
-// if(window.location.pathname != this.props.current){
-//   debugger;
-//   this.getContact();
-// }

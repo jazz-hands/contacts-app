@@ -1,0 +1,117 @@
+
+
+.LoginForm-forgotPasswordLink {
+  align-self: center;
+}
+
+.LoginForm-SubmitButton {
+  align-self: center;
+}
+
+.LoginForm-fullWidth {
+  display: block;
+  width: 100%;
+  margin-top: .5em;
+}
+
+.LoginForm-fullWidth-submit {
+  margin-top: 1.5em;
+  width: 100%;
+}
+
+.LoginForm-halfWidth-left {
+  display: block;
+  width: 49%;
+  padding-right: 1%;
+  margin-top: .5em;
+}
+
+.LoginForm-halfWidth-right {
+  display: block;
+  width: 50%;
+  margin-top: .5em;
+}
+
+.editIcon{
+  width: .9em;
+  height: 0.8em;
+  margin: 0em .25em;
+  cursor: pointer;
+}
+
+.UserForm {
+  padding: 2em;
+  margin: auto;
+  width: 90vw;
+}
+
+.ChangePassword {
+  width: 50%;
+  display: flow-root;
+  margin-left: 1em;
+  padding: 1em 1em 0em 1em;
+}
+
+.RightCol {
+  width: 50%;
+  display: block;
+  padding: 1em 1em 0em 1em;
+}
+
+.ChangeUsername {
+  display: block;
+  margin-bottom: 1.5em;
+  margin-right: 1em;
+}
+
+.DeleteAccount{
+  float: right;
+}
+
+.ChangeButtonsBox{
+  display: block;
+  width: fit-content;
+  margin: auto;
+  margin-top: 1em;
+  margin-bottom: 0em;
+}
+
+.ChangeButtons{
+  margin-top: 1em;
+  align-self: center;
+}
+
+.Heading{
+  color: rgba(0, 0, 0, 0.87);
+  font-size: 2rem;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 400;
+  line-height: 1.33;
+  letter-spacing: 0em;
+  flex-direction: row;
+  width: 97%;
+}
+
+.Username{
+  margin: 0;
+  display: block;
+  margin-top: 1em;
+  color: rgba(0, 0, 0, 0.57);
+  font-size: 1.5rem;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 300;
+  line-height: 1.33;
+  letter-spacing: 0em;
+}
+
+.EditContact {
+  width: 50%;
+  display: flow-root;
+}
+
+.UserForm-fullWidth {
+  display: flex;
+  flex-flow: row;
+  width: 100%;
+  padding: 2em;
+}

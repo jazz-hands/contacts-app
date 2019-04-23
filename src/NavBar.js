@@ -63,6 +63,7 @@ handleClose(event) {
       break;
     case "User Account":
       console.log("going to user account")
+      this.props.history.push("/user");
       break;
     case "Logout":
       console.log("log out!");

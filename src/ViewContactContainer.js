@@ -8,6 +8,7 @@ import './styles/SearchIndex.css';
 class ViewContactContainer extends React.Component {
   constructor(props){
     super(props);
+    this.props.isSessionActive();
   }
 
 

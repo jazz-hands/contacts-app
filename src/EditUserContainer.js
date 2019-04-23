@@ -1,11 +1,11 @@
 import React from 'react';
 import Paper from '@material-ui/core/Paper';
 import NavBar from './NavBar';
-import EditContact from './EditContact';
+import EditUser from './EditUser';
 import { withRouter } from "react-router-dom";
 import './styles/SearchIndex.css';
 
-class EditContactContainer extends React.Component {
+class EditUserContainer extends React.Component {
   constructor(props){
     super(props);
     this.props.isSessionActive();
@@ -18,11 +18,11 @@ class EditContactContainer extends React.Component {
           <NavBar backMenu={true} backTitle="Back" user={this.props.user} logout={this.props.logout} authed={this.props.isLoggedIn}/>
         </div>
         <div className='index-content'>
-          <EditContact />
+          <EditUser />
         </div>
       </div>
     );
   }
 }
 
-export default withRouter(EditContactContainer);
+export default withRouter(EditUserContainer);

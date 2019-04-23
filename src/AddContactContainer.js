@@ -24,6 +24,7 @@ class AddContactContainer extends React.Component {
     this.createContact = this.createContact.bind(this);
     this.setContact = this.setContact.bind(this);
     props.history.push('/add');
+    this.props.isSessionActive();
   }
 
   createContact(event){
