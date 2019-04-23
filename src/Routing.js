@@ -105,8 +105,7 @@ class Routing extends Component {
         //set token in local storage
         window.localStorage.setItem('username', user.username);
         window.localStorage.setItem('token', res.data["token"]);
-
-        return <Redirect to="/" />
+        this.isSessionActive();
       }
     }).catch((e)=>{
       this.setState({...this.state, message: e});
