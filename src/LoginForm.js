@@ -12,11 +12,12 @@ import { withRouter } from "react-router-dom";
 
 let BASE_URL = ""
 
-if (process.env.NODE_ENV !== 'production') {
-  BASE_URL = 'http://localhost:5000/api/v1/'
-} else {
-  BASE_URL = 'https://jasmine-contacts-api.herokuapp.com/api/v1/'
-}
+// if (process.env.NODE_ENV !== 'production') {
+//   BASE_URL = 'http://localhost:5000/api/v1/'
+// } else {
+//   BASE_URL = 'https://jasmine-contacts-api.herokuapp.com/api/v1/'
+// }
+BASE_URL = 'https://jasmine-contacts-api.herokuapp.com/api/v1/'
 
 
 class LoginForm extends React.Component {

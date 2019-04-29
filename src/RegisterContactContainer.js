@@ -9,11 +9,12 @@ import './styles/SearchIndex.css';
 
 let BASE_URL = ""
 
-if (process.env.NODE_ENV !== 'production') {
-  BASE_URL = 'http://localhost:5000/api/v1/user/'
-} else {
-  BASE_URL = 'https://jasmine-contacts-api.herokuapp.com/api/v1/user/'
-}
+// if (process.env.NODE_ENV !== 'production') {
+//   BASE_URL = 'http://localhost:5000/api/v1/user/'
+// } else {
+//   BASE_URL = 'https://jasmine-contacts-api.herokuapp.com/api/v1/user/'
+// }
+BASE_URL = 'https://jasmine-contacts-api.herokuapp.com/api/v1/user/'
 
 class RegisterContactContainer extends React.Component {
 

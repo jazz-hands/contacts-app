@@ -10,11 +10,12 @@ import axios from 'axios'
 
 let BASE_URL = ""
 
-if (process.env.NODE_ENV !== 'production') {
-  BASE_URL = 'http://localhost:5000/api/v1/contacts/'
-} else {
-  BASE_URL = 'https://jasmine-contacts-api.herokuapp.com/api/v1/contacts/'
-}
+// if (process.env.NODE_ENV !== 'production') {
+//   BASE_URL = 'http://localhost:5000/api/v1/contacts/'
+// } else {
+//   BASE_URL = 'https://jasmine-contacts-api.herokuapp.com/api/v1/contacts/'
+// }
+BASE_URL = 'https://jasmine-contacts-api.herokuapp.com/api/v1/contacts/'
 
 class SearchIndexContainer extends React.Component {
   constructor(props) {
