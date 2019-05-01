@@ -5,8 +5,13 @@
   margin: auto;
 }
 
+.LoginForm-links {
+  flex-flow: row;
+}
+
 .LoginForm-forgotPasswordLink {
   align-self: center;
+  margin: auto;
 }
 
 .LoginForm-SubmitButton {

@@ -76,6 +76,7 @@ class LoginForm extends React.Component {
               name='password'
               value={this.state.user.password}
               onChange={(event) => this.onChange(event)}
+              type="password"
             />
           </FormControl>
           <FormControl margin="normal" fullWidth>
@@ -91,8 +92,8 @@ class LoginForm extends React.Component {
             </Button>
           </FormControl>
           <FormControl margin="normal" fullWidth>
-            <Link className="LoginForm-forgotPasswordLink">
-              Forgot Password
+            <Link className="LoginForm-forgotPasswordLink" onClick={() => this.props.history.push('register/')}>
+              Register
             </Link>
           </FormControl>
         </Paper>
